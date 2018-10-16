@@ -1,24 +1,14 @@
 package com.fzy.controller;
 
 import com.fzy.entity.ProductCategory;
-import com.fzy.entity.dto.OrderDto;
-import com.fzy.entity.enums.ResultEnum;
-import com.fzy.entity.parameter.OrderParameter;
 import com.fzy.entity.vo.ResultVo;
-import com.fzy.exception.WebException;
 import com.fzy.service.CategoryService;
 import com.fzy.utils.ResultVOUtil;
-import com.fzy.utils.convert.OrderParameter2OrderDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,7 +57,7 @@ public class ProductCategoryController {
         }
     }
 
-    @PostMapping("/findAll")
+    @GetMapping("/findAll")
     @ApiOperation("查询全部商品类别信息")
     public ResultVo findAll(){
         try {

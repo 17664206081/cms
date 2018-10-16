@@ -16,9 +16,8 @@ public interface ProductService {
     /**
      * 添加商品
      * @param productInfo 商品对象
-     * @param categoryType 商品类别
      */
-    void save(ProductInfo productInfo, String categoryType)throws Exception;
+    int save(ProductInfo productInfo)throws Exception;
 
     /**
      * 查询全部上架商品
@@ -58,5 +57,13 @@ public interface ProductService {
      * @return
      */
     ProductInfo findById(String productId)throws Exception;
+
+    /**
+     * 修改商品信息
+     * @param productInfo
+     * @return
+     * @throws Exception
+     */
+    int update(ProductInfo productInfo) throws Exception;
 
 }

@@ -9,6 +9,7 @@ import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.enums.ResultEnum;
 import com.fzy.exception.ServiceException;
 import com.fzy.service.ProductService;
+import com.fzy.utils.KeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,12 +32,14 @@ public class ProductServiceImpl implements ProductService {
     ProductInfoMapper productInfoMapper;
 
     @Override
-    public void save(ProductInfo productInfo, String categoryType) {
+    public int save(ProductInfo productInfo) {
         //1.查询商品类别是否存在
-        ProductCategory category = productCategoryMapper.findOne(categoryType);
+        ProductCategory category = productCategoryMapper.findById(productInfo.getCategoryType());
         if (category!=null){
-                //2.将商品存入数据库
-                productInfoMapper.save(productInfo);
+            //设置uuid
+            productInfo.setProductId(KeyUtil.createUUID());
+            //2.将商品存入数据库
+            return productInfoMapper.save(productInfo);
         }else {
             throw new ServiceException(ResultEnum.PRODUCT_CATEGORY_NOT_EXIST);
         }
@@ -44,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductInfo> findUpAll() {
-        return null;
+        return productInfoMapper.findUpAll();
     }
 
     @Override
@@ -93,5 +96,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductInfo findById(String productId) {
         return productInfoMapper.findById(productId);
+    }
+
+    @Override
+    public int update(ProductInfo productInfo) {
+        ProductInfo info = productInfoMapper.findById(productInfo.getProductId());
+        if(null != info){
+            return productInfoMapper.update(productInfo);
+        }else {
+            throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
     }
 }
