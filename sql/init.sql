@@ -15,7 +15,7 @@ CREATE TABLE  `product_info` (
 CREATE TABLE `product_category`(
   `category_id` INT NOT NULL auto_increment,
   `category_name` VARCHAR(64) NOT NULL comment '类目名称',
-  `category_type` INT NOT NULL comment '类目编号',
+  `category_type` INT DEFAULT NULL comment '类目编号',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
   PRIMARY KEY(`category_id`),
