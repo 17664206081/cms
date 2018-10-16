@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fzy.dao.ProductCategoryMapper">
+
+    <select id="findAll" resultType="com.fzy.entity.ProductCategory">
+        SELECT * FROM product_category
+    </select>
+
+    <insert id="save" parameterType="com.fzy.entity.ProductCategory">
+        INSERT INTO product_category(category_name,category_type) VALUES(#{categoryName},#{categoryType})
+    </insert>
+
+    <select id="findOne" parameterType="String" resultType="com.fzy.entity.ProductCategory">
+        SELECT * FROM product_category WHERE category_type=#{categoryType}
+    </select>
+
+</mapper>

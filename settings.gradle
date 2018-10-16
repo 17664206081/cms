@@ -1,0 +1,9 @@
+rootProject.name = 'cms'
+include 'cms-dao'
+include 'cms-entity'
+include 'cms-utils'
+include 'cms-exception'
+include 'cms-service'
+//include 'cms-cache'
+include 'cms-web'
+

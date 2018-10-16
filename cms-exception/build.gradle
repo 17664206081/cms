@@ -1,0 +1,10 @@
+group 'com.fzy'
+version '1.0-SNAPSHOT'
+
+bootRepackage {
+    enabled = false
+}
+
+dependencies {
+    compile project(":cms-entity")
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.fzy.dao.OrderDetailMapper">
+
+    <sql id="orderDetail">
+        detail_id,order_id,product_id,product_name,product_price,
+        product_quantity,product_icon
+    </sql>
+
+    <insert id="save" parameterType="com.fzy.entity.OrderDetail">
+        INSERT INTO order_detail(
+            <include refid="orderDetail"/>
+        ) VALUES(
+            #{detailId},#{orderId},#{productId},#{productName},#{productPrice},
+            #{productQuantity},#{productIcon}
+        )
+    </insert>
+
+    <select id="findByOrderId" resultType="com.fzy.entity.OrderDetail">
+        SELECT <include refid="orderDetail"/> FROM order_detail
+        WHERE order_id=#{orderId}
+    </select>
+
+</mapper>

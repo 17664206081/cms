@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.fzy.dao.OrderMasterMapper">
+    <sql id="orderMaster">
+        order_id,buyer_name,buyer_phone,buyer_adder,buyer_openid,
+        order_amount,order_status,pay_status
+    </sql>
+
+    <insert id="save" parameterType="com.fzy.entity.OrderMaster">
+        INSERT INTO order_master(
+        <include refid="orderMaster"/>
+        ) VALUES(
+        #{orderId},#{buyerName},#{buyerPhone},#{buyerAdder},#{buyerOpenid},
+        #{orderAmount},#{orderStatus},#{payStatus})
+    </insert>
+
+    <select id="findById" resultType="com.fzy.entity.OrderMaster">
+        SELECT <include refid="orderMaster"/> FROM order_master
+        WHERE order_id=#{orderId}
+    </select>
+
+    <select id="findByOpenid" resultType="com.fzy.entity.OrderMaster">
+        SELECT <include refid="orderMaster"/>,create_time FROM order_master
+        WHERE buyer_openid=#{openid}
+    </select>
+
+    <update id="updateOrderStatus">
+        UPDATE order_master
+        <set>
+            order_status=#{orderStatus}
+        </set>
+        WHERE order_id=#{orderId}
+    </update>
+
+    <update id="updatePayStatus">
+        UPDATE order_master
+        <set>
+            pay_status=#{payStatus}
+        </set>
+        WHERE order_id=#{orderId}
+    </update>
+
+    <select id="findByIdAndOpenid" resultType="com.fzy.entity.OrderMaster">
+        SELECT <include refid="orderMaster"/> FROM order_master
+        WHERE order_id=#{orderId} AND  buyer_openid=#{openid}
+    </select>
+
+</mapper>

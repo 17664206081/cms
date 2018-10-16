@@ -1,0 +1,17 @@
+group 'com.fzy'
+version '1.0-SNAPSHOT'
+
+bootRepackage {
+    enabled = false
+}
+
+dependencies {
+    compile project(":cms-entity")
+    compile project(":cms-utils")
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
+    compile "com.alibaba:druid:${druidVersion}"
+    compile "com.github.pagehelper:pagehelper-spring-boot-starter:${pageHelperVersion}"
+    compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringBootVersion}"
+}
+
+
