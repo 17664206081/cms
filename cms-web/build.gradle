@@ -7,16 +7,11 @@ dependencies {
     compile project(":cms-service")
 }
 
-/*def list=['\\cms-entity','\\cms-utils',"\\cms-exception"]
+def list=['\\cms-entity','\\cms-utils',"\\cms-exception"]
 
 task removeDir{
     list.each {module ->
         def path=rootDir.getAbsolutePath().plus(module)+"\\src\\test"
-        def file=new File(path)
-        if (file.exists()){
-            file.deleteDir()
-        }else{
-            println('目录不存在')
-        }
+        new File(path).deleteDir()
     }
-}*/
+}

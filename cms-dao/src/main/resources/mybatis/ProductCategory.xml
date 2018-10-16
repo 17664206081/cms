@@ -16,4 +16,26 @@
         SELECT * FROM product_category WHERE category_type=#{categoryType}
     </select>
 
+    <select id="findById"  parameterType="Integer" resultType="com.fzy.entity.ProductCategory">
+        SELECT * FROM product_category
+        <where>
+            category_id={categoryId}
+        </where>
+    </select>
+
+    <update id="update" parameterType="com.fzy.entity.ProductCategory">
+        UPDATE product_category
+        <set>
+            <if test="categoryName !=null">
+                category_name=#{categoryName}
+            </if>
+            <if test="categoryType !=null">
+                category_type=#{categoryType}
+            </if>
+        </set>
+        <where>
+            category_id=#{CategoryId}
+        </where>
+    </update>
+
 </mapper>

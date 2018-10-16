@@ -21,7 +21,7 @@ import java.util.List;
  * @date: 2018-10-15 16:05
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CmsApplication.class)
+@SpringBootTest
 @Slf4j
 public class ProductInfoMapperTest {
 

@@ -2,18 +2,14 @@ package com.fzy.controller;
 
 import com.fzy.dao.ProductInfoMapper;
 import com.fzy.entity.ProductInfo;
-import com.fzy.entity.vo.ProductInfoVo;
-import com.fzy.entity.vo.ProductVo;
+import com.fzy.entity.parameter.ProductParameter;
 import com.fzy.entity.vo.ResultVo;
 import com.fzy.utils.ResultVOUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,6 +29,15 @@ public class BuyerProductController {
     @GetMapping("/list")
     @ApiOperation("商品列表")
     public ResultVo list(){
+        List<ProductInfo> productList = productInfoMapper.findAll();
+        return ResultVOUtil.success(productList);
+    }
+
+    @GetMapping("/create")
+    @ApiOperation("创建商品")
+    public ResultVo create(@RequestBody ProductInfo ProductInfo){
+
+
         List<ProductInfo> productList = productInfoMapper.findAll();
         return ResultVOUtil.success(productList);
     }

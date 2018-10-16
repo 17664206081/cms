@@ -26,4 +26,19 @@ public interface ProductCategoryMapper {
      */
     ProductCategory findOne(String categoryType);
 
+
+    /**
+     * 根据ID查询商品类型
+     * @param CategoryId
+     * @return
+     */
+    ProductCategory findById(Integer CategoryId);
+
+    /**
+     * 更新商品类别信息
+     * @param productCategory
+     * @return
+     */
+    int update(ProductCategory productCategory);
+
 }
