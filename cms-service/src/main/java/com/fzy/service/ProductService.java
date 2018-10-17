@@ -60,10 +60,19 @@ public interface ProductService {
 
     /**
      * 修改商品信息
-     * @param productInfo
+     * @param productInfo 商品信息
      * @return
      * @throws Exception
      */
     int update(ProductInfo productInfo) throws Exception;
+
+
+    /**
+     * 删除商品信息
+     * @param productId 商品ID
+     * @return
+     * @throws Exception
+     */
+    int delete(String productId) throws Exception;
 
 }

@@ -20,8 +20,26 @@
     <update id="update">
         UPDATE product_info
         <set>
+            <if test="productName !=null">
+                product_name=#{productName},
+            </if>
+            <if test="productPrice !=null">
+                product_price=#{productPrice},
+            </if>
             <if test="productStock !=null">
-                product_stock=#{productStock}
+                product_stock=#{productStock},
+            </if>
+            <if test="productDescription !=null">
+                product_description=#{productDescription},
+            </if>
+            <if test="productIcon !=null">
+                product_icon=#{productIcon},
+            </if>
+            <if test="categoryType !=null">
+                category_type=#{categoryType},
+            </if>
+            <if test="productStatus !=null">
+                product_status=#{productStatus},
             </if>
         </set>
          WHERE product_id=#{productId}
@@ -48,12 +66,7 @@
     </delete>
 
     <select id="findById" parameterType="String" resultType="com.fzy.entity.ProductInfo">
-        SELECT <include refid="product"/> FROM product_info
-        <where>
-            <if test="productId !=null">
-                product_id=#{productId}
-            </if>
-        </where>
+        SELECT <include refid="product"/> FROM product_info WHERE product_id=#{productId}
     </select>
 
 </mapper>

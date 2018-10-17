@@ -7,7 +7,7 @@ dependencies {
     compile project(":cms-service")
 }
 
-def list=['\\cms-entity','\\cms-utils',"\\cms-exception"]
+def list=['\\cms-entity','\\cms-utils',"\\cms-exception","\\cms-cache"]
 
 task removeDir{
     list.each {module ->

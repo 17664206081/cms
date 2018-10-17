@@ -9,4 +9,5 @@ dependencies {
     compile project(":cms-dao")
     compile project(":cms-utils")
     compile project(":cms-exception")
+    compile project(":cms-cache")
 }

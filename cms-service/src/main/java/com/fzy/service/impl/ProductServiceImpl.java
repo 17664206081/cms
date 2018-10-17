@@ -107,4 +107,15 @@ public class ProductServiceImpl implements ProductService {
             throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
         }
     }
+
+    @Override
+    public int delete(String productId) throws Exception {
+
+        ProductInfo info = productInfoMapper.findById(productId);
+        if(null != info){
+            return productInfoMapper.delete(info);
+        }else {
+            throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+    }
 }

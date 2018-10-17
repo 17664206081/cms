@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public int update(ProductCategory productCategory) throws Exception {
+    public int update(@RequestBody  ProductCategory productCategory) throws Exception {
         ProductCategory category = productCategoryMapper.findById(productCategory.getCategoryId());
         if(null==category){
             throw new ServiceException(ResultEnum.PRODUCT_CATEGORY_NOT_EXIST);

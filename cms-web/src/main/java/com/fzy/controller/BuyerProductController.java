@@ -7,6 +7,7 @@ import com.fzy.utils.ResultVOUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class BuyerProductController {
             List<ProductInfo> upProduct = productService.findUpAll();
             return ResultVOUtil.success(upProduct);
         } catch (Exception e) {
-            log.error("查询全部上架");
+            log.error("查询全部上架 err= {}",e.getMessage());
             return ResultVOUtil.error(1004,"查询全部上架失败");
         }
     }
@@ -49,7 +50,7 @@ public class BuyerProductController {
             }
             return ResultVOUtil.error(1004,"创建商品失败");
         } catch (Exception e) {
-            log.error("创建商品失败");
+            log.error("创建商品失败 err= {}",e.getMessage());
             return ResultVOUtil.error(1004,"创建商品失败");
         }
     }
@@ -63,8 +64,22 @@ public class BuyerProductController {
             }
             return ResultVOUtil.error(1004,"修改商品失败");
         } catch (Exception e) {
-            log.error("创建商品失败");
+            log.error("修改商品失败 err= {}", e.getMessage());
             return ResultVOUtil.error(1004,"修改商品失败");
+        }
+    }
+
+    @GetMapping("/delete")
+    @ApiOperation("删除商品")
+    public ResultVo delete(@RequestParam("productId") String productId){
+        try {
+            if((productService.delete(productId))>0){
+                return ResultVOUtil.success("删除商品成功");
+            }
+            return ResultVOUtil.error(1004,"删除商品失败");
+        } catch (Exception e) {
+            log.error("删除商品失败 err={}", e.getMessage());
+            return ResultVOUtil.error(1004,"删除商品失败");
         }
     }
 }
