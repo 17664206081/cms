@@ -42,6 +42,11 @@ spring:
     password: my_redis
     timeout: 600000
     database: 0
+  rabbitmq:
+    host: 39.107.242.109
+    port: 5672
+    username: guest
+    password: guest
 mybatis:
   type-aliases-package: com.fzy.entity
   mapper-locations: classpath:mybatis/*.xml

@@ -10,4 +10,5 @@ dependencies {
     compile project(":cms-utils")
     compile project(":cms-exception")
     compile project(":cms-cache")
+    compile("org.springframework.boot:spring-boot-starter-amqp")
 }
