@@ -1,7 +1,10 @@
 #环境说明
-1.springboot
-2.mybatis
-3.mysql
+1. springboot
+2. mybatis
+3. mysql
+4. redis
+5. rabbitmq
+
 
 #构建工具
 Gradle
