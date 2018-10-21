@@ -2,7 +2,9 @@ package com.fzy.entity.vo;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -13,15 +15,15 @@ import java.math.BigDecimal;
  * @create: 2018-09-15 14:51
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductInfoVo {
-    @JsonProperty("id")
+
     private String productId;
-    @JsonProperty("name")
+
     private String productName;
-    @JsonProperty("price")
+
     private BigDecimal productPrice;
-    @JsonProperty("description")
-    private  String productDescription;
-    @JsonProperty("icon")
+
     private String productIcon;
 }

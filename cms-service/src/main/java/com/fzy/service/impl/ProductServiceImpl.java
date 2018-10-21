@@ -7,14 +7,20 @@ import com.fzy.entity.ProductCategory;
 import com.fzy.entity.ProductInfo;
 import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.enums.ResultEnum;
+import com.fzy.entity.vo.ProductDetailVo;
+import com.fzy.entity.vo.ProductInfoVo;
+import com.fzy.entity.vo.ProductVo;
 import com.fzy.exception.ServiceException;
 import com.fzy.service.ProductService;
 import com.fzy.utils.KeyUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: ProductServiceImpl
@@ -46,8 +52,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductInfo> findUpAll() {
-        return productInfoMapper.findUpAll();
+    public List<ProductInfoVo> findUpAll() {
+        List<ProductInfo> list = productInfoMapper.findUpAll();
+        List<ProductInfoVo> productInfoVoList = list.stream().map(e ->
+                new ProductInfoVo(e.getProductId(), e.getProductName()
+                        , e.getProductPrice(), e.getProductIcon().split(",")[0]))
+                .collect(Collectors.toList());
+        return productInfoVoList;
     }
 
     @Override
@@ -64,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void increaseStock(List<CartDto> cartDto) {
         for (CartDto dto : cartDto) {
-            ProductInfo product = this.findById(dto.getProductId());
+            ProductInfo product = productInfoMapper.findById(dto.getProductId());
             if(null == product){
                 throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
             }
@@ -79,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void decreaseStock(List<CartDto> cartDto) {
         for (CartDto dto : cartDto) {
-            ProductInfo product = this.findById(dto.getProductId());
+            ProductInfo product = productInfoMapper.findById(dto.getProductId());
             if(null == product){
                 throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
             }
@@ -94,8 +105,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductInfo findById(String productId) {
-        return productInfoMapper.findById(productId);
+    public ProductDetailVo findById(String productId) {
+        ProductInfo info = productInfoMapper.findById(productId);
+        if(null!=info){
+            ProductDetailVo productDetailVo=new ProductDetailVo();
+            BeanUtils.copyProperties(info,productDetailVo);
+            if(null!=info.getProductIcon()){
+                String[] img = info.getProductIcon().split(",");
+                productDetailVo.setProductIcon(img[0]);
+                productDetailVo.setBannerImg(Arrays.asList(img));
+            }
+            return productDetailVo;
+        }
+        return null;
     }
 
     @Override

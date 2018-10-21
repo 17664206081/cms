@@ -2,6 +2,9 @@ package com.fzy.service;
 
 import com.fzy.entity.ProductInfo;
 import com.fzy.entity.dto.CartDto;
+import com.fzy.entity.vo.ProductDetailVo;
+import com.fzy.entity.vo.ProductInfoVo;
+import com.fzy.entity.vo.ProductVo;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ public interface ProductService {
      * 查询全部上架商品
      * @return
      */
-    List<ProductInfo> findUpAll()throws Exception;
+    List<ProductInfoVo> findUpAll()throws Exception;
 
     /**
      * 商品上架
@@ -56,7 +59,7 @@ public interface ProductService {
      * @param productId 商品ID
      * @return
      */
-    ProductInfo findById(String productId)throws Exception;
+    ProductDetailVo findById(String productId)throws Exception;
 
     /**
      * 修改商品信息

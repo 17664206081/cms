@@ -1,6 +1,8 @@
 package com.fzy.controller;
 
 import com.fzy.entity.ProductInfo;
+import com.fzy.entity.vo.ProductDetailVo;
+import com.fzy.entity.vo.ProductInfoVo;
 import com.fzy.entity.vo.ResultVo;
 import com.fzy.service.ProductService;
 import com.fzy.utils.ResultVOUtil;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.awt.SystemColor.info;
 
 /**
  * @program: BuyerProductController
@@ -32,7 +36,7 @@ public class BuyerProductController {
     @ApiOperation("查询全部上架商品")
     public ResultVo findUpAll(){
         try {
-            List<ProductInfo> upProduct = productService.findUpAll();
+            List<ProductInfoVo> upProduct = productService.findUpAll();
             return ResultVOUtil.success(upProduct);
         } catch (Exception e) {
             log.error("查询全部上架 err= {}",e.getMessage());
@@ -80,6 +84,21 @@ public class BuyerProductController {
         } catch (Exception e) {
             log.error("删除商品失败 err={}", e.getMessage());
             return ResultVOUtil.error(1004,"删除商品失败");
+        }
+    }
+
+    @GetMapping("/findById")
+    @ApiOperation("根据商品ID查询详情")
+    public ResultVo findById(@RequestParam("productId") String productId){
+        try {
+            ProductDetailVo info = productService.findById(productId);
+            if(null!=info){
+                return ResultVOUtil.success(info);
+            }
+            return ResultVOUtil.error(1004,"根据商品ID查询详情失败");
+        } catch (Exception e) {
+            log.error("根据商品ID查询详情失败 err={}", e.getMessage());
+            return ResultVOUtil.error(1004,"根据商品ID查询详情失败");
         }
     }
 }

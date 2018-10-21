@@ -1,10 +1,10 @@
 CREATE TABLE  `product_info` (
-    `product_id` VARCHAR(32) not null ,
-	  `product_name` VARCHAR(64) not null COMMENT '商品名称',
-    `product_price` DECIMAL(4,2) not null COMMENT '商品单价',
+    `product_id` VARCHAR(32) NOT NULL ,
+	  `product_name` VARCHAR(64) NOT NULL COMMENT '商品名称',
+    `product_price` DECIMAL(4,2) NOT NULL COMMENT '商品单价',
     `product_stock` INT NOT NULL COMMENT '库存',
     `product_description` VARCHAR(64) COMMENT '描述',
-    `product_icon` VARCHAR(512) COMMENT '图标',
+    `product_icon` VARCHAR(1024) COMMENT '图标',
     `category_type` INT NOT NULL COMMENT '类目编号',
     `product_status` TINYINT(3) NOT NULL DEFAULT '0' COMMENT '商品状态 默认0 上架',
     `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
@@ -50,3 +50,16 @@ CREATE TABLE `order_detail`(
 	PRIMARY KEY (`detail_id`),
 	KEY `index_order_id` (`order_id`)
 )ENGINE=INNODB COMMENT '订单详情表';
+
+CREATE TABLE `cart`(
+	`cart_id` CHAR(32) NOT NULL,
+	`open_id` VARCHAR(64) NOT NULL COMMENT '买家openid',
+	`product_id` CHAR(32) NOT NULL COMMENT '商品ID',
+	`product_num` INT(5) NOT NULL COMMENT '商品数量',
+	`size` VARCHAR(32) COMMENT '商品规格',
+	`color` VARCHAR(32) COMMENT '商品颜色',
+	`cart_status` TINYINT(3) NOT NULL DEFAULT '0' COMMENT '购物车状态 0未结算 1已结算',
+	`create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+  `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
+   PRIMARY KEY (`cart_id`)
+)ENGINE=INNODB COMMENT '购物车';

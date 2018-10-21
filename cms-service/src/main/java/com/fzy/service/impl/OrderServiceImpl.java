@@ -3,6 +3,7 @@ package com.fzy.service.impl;
 
 import com.fzy.dao.OrderDetailMapper;
 import com.fzy.dao.OrderMasterMapper;
+import com.fzy.dao.ProductInfoMapper;
 import com.fzy.entity.OrderDetail;
 import com.fzy.entity.OrderMaster;
 import com.fzy.entity.ProductInfo;
@@ -41,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
     private ProductService productService;
 
     @Autowired
+    private ProductInfoMapper productInfoMapper;
+
+    @Autowired
     private OrderDetailMapper orderDetailMapper;
 
     @Autowired
@@ -57,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 
         //1.遍历订单列表 查询商品
         for (OrderDetail orderDetail :orderDto.getOrderDetailList()){
-           ProductInfo product = productService.findById(orderDetail.getProductId());
+           ProductInfo product = productInfoMapper.findById(orderDetail.getProductId());
             if(null==product){
                 throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
             }

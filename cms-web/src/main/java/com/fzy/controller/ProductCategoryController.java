@@ -64,8 +64,8 @@ public class ProductCategoryController {
             List<ProductCategory> list = categoryService.findAll();
             return ResultVOUtil.success(list);
         } catch (Exception e) {
-            log.error("创建订单失败, {}", e.getMessage());
-            return ResultVOUtil.error(1001, "修改商品类别失败");
+            log.error("查询全部商品类别信息失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "查询全部商品类别信息失败");
         }
     }
 
