@@ -5,7 +5,7 @@ dependencies {
     apply plugin: 'application'
     mainClassName='com.fzy.CmsApplication'
     compile project(":cms-service")
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    //compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 }
 
 def list=['\\cms-entity','\\cms-utils',"\\cms-exception","\\cms-cache"]

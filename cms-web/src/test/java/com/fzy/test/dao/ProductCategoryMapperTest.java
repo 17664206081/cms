@@ -1,5 +1,6 @@
-package com.fzy.dao;
+package com.fzy.test.dao;
 
+import com.fzy.dao.ProductCategoryMapper;
 import com.fzy.entity.ProductCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

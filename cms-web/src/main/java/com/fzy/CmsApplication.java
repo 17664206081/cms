@@ -14,10 +14,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author: fzy
  * @date: 2018-10-13 18:09
  **/
-@SpringBootApplication
+
 @MapperScan("com.fzy.dao")
 @ServletComponentScan
 @EnableSwagger2
+@SpringBootApplication
 //@EnableScheduling
 public class CmsApplication {
     public static void main(String[] args) {

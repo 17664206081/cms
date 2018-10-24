@@ -1,7 +1,7 @@
 package com.fzy.controller;
 
 import com.fzy.entity.Cart;
-import com.fzy.entity.ProductCategory;
+import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.vo.ResultVo;
 import com.fzy.service.CartService;
 import com.fzy.utils.ResultVOUtil;
@@ -12,7 +12,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,8 +57,47 @@ public class CartController {
             map.put("total",allCount);
             return ResultVOUtil.success(map);
         } catch (Exception e) {
-            log.error("查询购物车数量, {}", e.getMessage());
-            return ResultVOUtil.error(1001, "查询购物车数量");
+            log.error("查询购物车数量失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "查询购物车数量失败");
         }
     }
+
+    @GetMapping("/findAllList")
+    @ApiOperation("查询购物车列表")
+    public ResultVo findAllList(@Param("openId") String openId){
+        try {
+            List<CartDto> allList = cartService.findAllList(openId);
+            BigDecimal totalPrice=new BigDecimal(BigInteger.ZERO);
+
+            for (CartDto cartDto : allList) {
+                System.out.println(cartDto.getProductPrice());
+                totalPrice=totalPrice.add(cartDto.getProductPrice());
+            }
+
+            Map<String ,Object> map=new HashMap<>();
+            map.put("cartList",allList);
+            map.put("totalPrice",totalPrice);
+            return ResultVOUtil.success(map);
+        } catch (Exception e) {
+            log.error("查询购物车列表失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "查询购物车列表失败");
+        }
+    }
+
+    @PostMapping("/updateProductNum")
+    @ApiOperation("更新购物车数量")
+    public ResultVo updateProductNum(@Param("cartId") String cartId,@Param("productNum") Integer productNum){
+        try {
+            int res = cartService.updateProductNum(cartId,productNum);
+            if(res>0){
+                return ResultVOUtil.success("更新购物车数量成功");
+            }
+            return ResultVOUtil.error(1001, "更新购物车数量失败");
+        } catch (Exception e) {
+            log.error("更新购物车数量失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "更新购物车数量失败");
+        }
+    }
+
+
 }

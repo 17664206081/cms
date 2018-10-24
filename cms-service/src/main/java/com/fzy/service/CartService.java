@@ -1,6 +1,9 @@
 package com.fzy.service;
 
 import com.fzy.entity.Cart;
+import com.fzy.entity.dto.CartDto;
+
+import java.util.List;
 
 /**
  * @program: CartService
@@ -25,6 +28,24 @@ public interface CartService {
      * @throws Exception
      */
     int findAllCount(String openId) throws Exception;
+
+
+    /**
+     * 查询全部购物车列表
+     * @param openId
+     * @return
+     * @throws Exception
+     */
+    List<CartDto> findAllList(String openId) throws Exception;
+
+
+    /**
+     * 更新购物车商品数量
+     * @param CartId 商品ID
+     * @return
+     * @throws Exception
+     */
+    int updateProductNum(String CartId,Integer productNum) throws Exception;
 
 
 }

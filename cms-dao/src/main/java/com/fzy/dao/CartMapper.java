@@ -1,6 +1,9 @@
 package com.fzy.dao;
 
 import com.fzy.entity.Cart;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @program: CartMapper
@@ -13,4 +16,11 @@ public interface CartMapper {
     int save(Cart cart);
 
     int findAllCount(String openId);
+
+    List<Cart> findAllList(String openId);
+
+    Cart findById(String cartId);
+
+    int UpdateProductNum(@Param("cartId") String cartId,@Param("productNum") Integer productNum);
+
 }

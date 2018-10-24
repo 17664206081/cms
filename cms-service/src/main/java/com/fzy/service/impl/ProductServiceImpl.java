@@ -9,10 +9,9 @@ import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.enums.ResultEnum;
 import com.fzy.entity.vo.ProductDetailVo;
 import com.fzy.entity.vo.ProductInfoVo;
-import com.fzy.entity.vo.ProductVo;
 import com.fzy.exception.ServiceException;
 import com.fzy.service.ProductService;
-import com.fzy.utils.KeyUtil;
+import com.fzy.utils.UUIDUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
         ProductCategory category = productCategoryMapper.findById(productInfo.getCategoryType());
         if (category!=null){
             //设置uuid
-            productInfo.setProductId(KeyUtil.createUUID());
+            productInfo.setProductId(UUIDUtil.createUUID());
             //2.将商品存入数据库
             return productInfoMapper.save(productInfo);
         }else {
@@ -74,34 +73,34 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void increaseStock(List<CartDto> cartDto) {
-        for (CartDto dto : cartDto) {
-            ProductInfo product = productInfoMapper.findById(dto.getProductId());
-            if(null == product){
-                throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
-            }
-            Integer stock=dto.getProductQuantity()+product.getProductStock();
-            product.setProductStock(stock);
-            //更新库存
-            productInfoMapper.update(product);
-        }
+//        for (CartDto dto : cartDto) {
+//            ProductInfo product = productInfoMapper.findById(dto.getProductId());
+//            if(null == product){
+//                throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
+//            }
+//            Integer stock=dto.getProductQuantity()+product.getProductStock();
+//            product.setProductStock(stock);
+//            //更新库存
+//            productInfoMapper.update(product);
+//        }
     }
 
     @Override
     @Transactional
     public void decreaseStock(List<CartDto> cartDto) {
-        for (CartDto dto : cartDto) {
-            ProductInfo product = productInfoMapper.findById(dto.getProductId());
-            if(null == product){
-                throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
-            }
-            Integer stock=product.getProductStock()-dto.getProductQuantity();
-            if(stock<0){
-                throw new ServiceException(ResultEnum.PRODUCT_STOCK_ERROR);
-            }
-            product.setProductStock(stock);
-            //更新库存
-            productInfoMapper.update(product);
-        }
+//        for (CartDto dto : cartDto) {
+//            ProductInfo product = productInfoMapper.findById(dto.getProductId());
+//            if(null == product){
+//                throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
+//            }
+//            Integer stock=product.getProductStock()-dto.getProductQuantity();
+//            if(stock<0){
+//                throw new ServiceException(ResultEnum.PRODUCT_STOCK_ERROR);
+//            }
+//            product.setProductStock(stock);
+//            //更新库存
+//            productInfoMapper.update(product);
+//        }
     }
 
     @Override

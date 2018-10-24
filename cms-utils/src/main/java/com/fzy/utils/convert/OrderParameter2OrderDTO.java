@@ -5,10 +5,9 @@ import com.fzy.entity.dto.OrderDto;
 import com.fzy.entity.enums.ResultEnum;
 import com.fzy.entity.parameter.OrderParameter;
 import com.fzy.exception.WebException;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 /**
  * @program: OrderParameter2OrderDTO
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class OrderParameter2OrderDTO {
     public static OrderDto convert(OrderParameter orderParameter) {
-        Gson gson = new Gson();
+        //Gson gson = new Gson();
         OrderDto orderDTO = new OrderDto();
 
         orderDTO.setBuyerName(orderParameter.getName());
@@ -29,9 +28,9 @@ public class OrderParameter2OrderDTO {
 
         List<OrderDetail> orderDetailList=null;
         try {
-            orderDetailList= orderParameter.getItems().stream()
-                    .map(e-> new OrderDetail(e.getProductId(),e.getProductQuantity()))
-                    .collect(Collectors.toList());
+//            orderDetailList= orderParameter.getItems().stream()
+//                    .map(e-> new OrderDetail(e.getProductId(),e.getProductQuantity()))
+//                    .collect(Collectors.toList());
         } catch (Exception e) {
             log.error("【对象转换】错误, string={}", orderParameter.getItems());
             throw new WebException(ResultEnum.PARAM_ERROR);

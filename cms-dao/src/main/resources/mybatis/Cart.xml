@@ -19,4 +19,28 @@
         </where>
     </select>
 
+    <select id="findAllList" parameterType="String" resultType="com.fzy.entity.Cart">
+        SELECT * FROM cart
+        <where>
+            open_id=#{openId} AND cart_status=0
+        </where>
+    </select>
+
+    <select id="findById" parameterType="String" resultType="com.fzy.entity.Cart">
+        SELECT * FROM cart
+        <where>
+            cart_id=#{cartId}
+        </where>
+    </select>
+
+    <update id="UpdateProductNum">
+        UPDATE cart
+        <set>
+            product_num=#{productNum}
+        </set>
+        <where>
+            cart_id=#{cartId}
+        </where>
+    </update>
+
 </mapper>

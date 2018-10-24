@@ -8,7 +8,7 @@ bootRepackage {
 dependencies {
     compile project(":cms-entity")
     compile project(":cms-exception")
-    compile 'org.immutables:gson:2.7.1'
+    compile 'com.alibaba:fastjson:1.2.51'
 }
 
 

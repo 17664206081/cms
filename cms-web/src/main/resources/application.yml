@@ -57,3 +57,8 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+wx:
+  appId: wx44d4961e877d0cf6
+  secret: 1c6b9d840b6a1779b446dedcac502939
+  url: https://api.weixin.qq.com/sns/jscode2session
+  grant_type: authorization_code

@@ -1,21 +1,29 @@
 package com.fzy.entity.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 /**
  * @program: CartDto
  * @description:
  * @author: fzy
- * @date: 2018-10-01 16:46
+ * @date: 2018-10-22 12:35
  **/
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class CartDto {
 
-    private String productId;
+    private String cartId;
 
-    private Integer productQuantity;
+    private String color;
+
+    private String size;
+
+    private String productName;
+
+    private Integer productNum;
+
+    private BigDecimal productPrice;
+
+    private String productIcon;
 }

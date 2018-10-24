@@ -1,9 +1,9 @@
-package com.fzy.dao;
+package com.fzy.test.dao;
 
+import com.fzy.dao.ProductInfoMapper;
 import com.fzy.entity.ProductInfo;
 import com.fzy.entity.enums.ProductStatusEnum;
-import com.fzy.utils.KeyUtil;
-import com.fzy.CmsApplication;
+import com.fzy.utils.UUIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @program: com.fzy.dao.ProductInfoMapperTest
+ * @program: ProductInfoMapperTest
  * @description:
  * @author: fzy
  * @date: 2018-10-15 16:05
@@ -31,7 +31,7 @@ public class ProductInfoMapperTest {
     @Test
     public void save() {
         ProductInfo productInfo=new ProductInfo();
-        productInfo.setProductId(KeyUtil.createUUID());
+        productInfo.setProductId(UUIDUtil.createUUID());
         productInfo.setProductName("小零食");
         productInfo.setProductPrice(new BigDecimal(1.5));
         productInfo.setProductStock(10);

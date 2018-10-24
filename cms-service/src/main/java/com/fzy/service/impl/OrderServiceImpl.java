@@ -7,7 +7,6 @@ import com.fzy.dao.ProductInfoMapper;
 import com.fzy.entity.OrderDetail;
 import com.fzy.entity.OrderMaster;
 import com.fzy.entity.ProductInfo;
-import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.dto.OrderDto;
 import com.fzy.entity.enums.OrderStatusEnum;
 import com.fzy.entity.enums.PayStatusEnum;
@@ -15,7 +14,7 @@ import com.fzy.entity.enums.ResultEnum;
 import com.fzy.exception.ServiceException;
 import com.fzy.service.OrderService;
 import com.fzy.service.ProductService;
-import com.fzy.utils.KeyUtil;
+import com.fzy.utils.UUIDUtil;
 import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +25,6 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @program: OrderServiceImpl
@@ -55,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto create(OrderDto orderDto) throws Exception {
 
         //订单编号
-        String orderId = KeyUtil.createUUID();
+        String orderId = UUIDUtil.createUUID();
         //总价
         BigDecimal orderAmount =new BigDecimal(BigInteger.ZERO);
 
@@ -71,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
                     .add(orderAmount);
 
             //生成订单ID和订单详情ID
-            orderDetail.setDetailId(KeyUtil.createUUID());
+            orderDetail.setDetailId(UUIDUtil.createUUID());
             orderDetail.setOrderId(orderId);
             orderDetail.setProductPrice(product.getProductPrice());
             orderDetail.setProductName(product.getProductName());
@@ -90,11 +88,11 @@ public class OrderServiceImpl implements OrderService {
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
         orderMasterMapper.save(orderMaster);
 
-        //4.减少库存
-        List<CartDto> cartDtoList = orderDto.getOrderDetailList().stream().map(e ->
-                new CartDto(e.getProductId(), e.getProductQuantity())
-        ).collect(Collectors.toList());
-        productService.decreaseStock(cartDtoList);
+//        //4.减少库存
+//        List<CartDto> cartDtoList = orderDto.getOrderDetailList().stream().map(e ->
+//                new CartDto(e.getProductId(), e.getProductQuantity())
+//        ).collect(Collectors.toList());
+//        productService.decreaseStock(cartDtoList);
 
         return orderDto;
     }
@@ -141,12 +139,12 @@ public class OrderServiceImpl implements OrderService {
             throw new ServiceException(ResultEnum.ORDER_DETAIL_EMPTY);
         }
         //java8 新特性
-        List<CartDto> list = orderDto.getOrderDetailList().stream()
-                .map(e -> new CartDto(e.getProductId(), e.getProductQuantity()))
-                .collect(Collectors.toList());
+//        List<CartDto> list = orderDto.getOrderDetailList().stream()
+//                .map(e -> new CartDto(e.getProductId(), e.getProductQuantity()))
+//                .collect(Collectors.toList());
 
         //更新库存
-        productService.increaseStock(list);
+        productService.increaseStock(null);
 
         //支付成功,需要退款
         if(PayStatusEnum.SUCCESS.getCode().equals(orderDto.getPayStatus())){

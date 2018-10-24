@@ -1,7 +1,8 @@
-package com.fzy.dao;
+package com.fzy.test.dao;
 
+import com.fzy.dao.CartMapper;
 import com.fzy.entity.Cart;
-import com.fzy.utils.KeyUtil;
+import com.fzy.utils.UUIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +27,7 @@ public class CartMapperTest {
     @Test
     public void save() {
         Cart cart=new Cart();
-        cart.setCartId(KeyUtil.createUUID());
+        cart.setCartId(UUIDUtil.createUUID());
         cart.setOpenId("1121");
         cart.setProductId("123");
         cart.setProductNum(12);

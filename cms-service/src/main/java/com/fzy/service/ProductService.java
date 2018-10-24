@@ -4,7 +4,6 @@ import com.fzy.entity.ProductInfo;
 import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.vo.ProductDetailVo;
 import com.fzy.entity.vo.ProductInfoVo;
-import com.fzy.entity.vo.ProductVo;
 
 import java.util.List;
 
