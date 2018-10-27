@@ -21,6 +21,8 @@ public interface CartMapper {
 
     Cart findById(String cartId);
 
-    int UpdateProductNum(@Param("cartId") String cartId,@Param("productNum") Integer productNum);
+    int updateProductNum(@Param("cartId") String cartId,@Param("productNum") Integer productNum);
+
+    int batchDelete(@Param("cartIds")List<String> cartIds);
 
 }

@@ -33,7 +33,7 @@
         </where>
     </select>
 
-    <update id="UpdateProductNum">
+    <update id="updateProductNum">
         UPDATE cart
         <set>
             product_num=#{productNum}
@@ -42,5 +42,12 @@
             cart_id=#{cartId}
         </where>
     </update>
+
+    <delete id="batchDelete" parameterType="List">
+        DELETE FROM cart WHERE cart_id in
+        <foreach collection="cartIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 
 </mapper>

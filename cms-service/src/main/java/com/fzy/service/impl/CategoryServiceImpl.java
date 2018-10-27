@@ -33,13 +33,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int save(ProductCategory productCategory) throws Exception {
-        if(!StringUtils.isEmpty(productCategory.getCategoryType())){
-            ProductCategory category = productCategoryMapper.findById(productCategory.getCategoryType());
-            if (null== category){
-                log.error("商品类别不存在 ProductCategory= {}",productCategory);
-                throw new ServiceException(ResultEnum.PRODUCT_CATEGORY_NOT_EXIST);
-            }
-        }
         return productCategoryMapper.save(productCategory);
     }
 
@@ -50,7 +43,6 @@ public class CategoryServiceImpl implements CategoryService {
             throw new ServiceException(ResultEnum.PRODUCT_CATEGORY_NOT_EXIST);
         }
         category.setCategoryName(productCategory.getCategoryName());
-        category.setCategoryType(productCategory.getCategoryType());
         return productCategoryMapper.update(category);
     }
 

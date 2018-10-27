@@ -66,6 +66,11 @@ public class CartServiceImpl implements CartService {
         if(null == cart){
             throw new ServiceException(ResultEnum.CART_EMPTY);
         }
-        return cartMapper.UpdateProductNum(CartId,productNum);
+        return cartMapper.updateProductNum(CartId,productNum);
+    }
+
+    @Override
+    public int batchDelete(List<String> cartIds) throws Exception {
+        return cartMapper.batchDelete(cartIds);
     }
 }

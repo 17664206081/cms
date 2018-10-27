@@ -33,7 +33,9 @@ public class ProductCategoryMapperTest {
 
     @Test
     public void save() {
-
+        ProductCategory productCategory=new ProductCategory();
+        productCategory.setCategoryName("手机");
+        productCategoryMapper.save(productCategory);
     }
 
     @Test

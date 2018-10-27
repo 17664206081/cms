@@ -32,9 +32,9 @@ public class ProductInfoMapperTest {
     public void save() {
         ProductInfo productInfo=new ProductInfo();
         productInfo.setProductId(UUIDUtil.createUUID());
-        productInfo.setProductName("小零食");
-        productInfo.setProductPrice(new BigDecimal(1.5));
-        productInfo.setProductStock(10);
+        productInfo.setProductName("魅族 16th 全面屏游戏手机 6GB+128GB 远山白 全网通移动联通电信4G手机 双卡双待");
+        productInfo.setProductPrice(new BigDecimal(2998));
+        productInfo.setProductStock(101);
         productInfo.setCategoryType(2);
         productInfo.setProductIcon("http://xxx.jpg");
         productInfo.setProductDescription("好吃");

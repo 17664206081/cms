@@ -23,17 +23,8 @@ public class ProductCategory implements Serializable {
      */
     private  String categoryName;
     /**
-     * 类目类型
+     * 类目父ID
      */
-    private Integer categoryType;
+    private Integer parentId;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 }

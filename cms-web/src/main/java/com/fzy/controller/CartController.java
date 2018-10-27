@@ -10,10 +10,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,5 +101,18 @@ public class CartController {
         }
     }
 
+    @PostMapping("/batchDelete")
+    @ApiOperation("批量删除购物车商品")
+    public ResultVo batchDelete(@RequestParam("cartIds") List<String> cartIds){
+        try {
+            if(cartService.batchDelete(cartIds)>0){
+                return ResultVOUtil.success("批量删除购物车商品成功");
+            }
+            return ResultVOUtil.error(1001, "批量删除购物车商品失败");
+        } catch (Exception e) {
+            log.error("批量删除购物车商品失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "批量删除购物车商品失败");
+        }
+    }
 
 }

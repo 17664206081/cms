@@ -14,12 +14,11 @@ CREATE TABLE  `product_info` (
 
 CREATE TABLE `product_category`(
   `category_id` INT NOT NULL auto_increment,
-  `category_name` VARCHAR(64) NOT NULL comment '类目名称',
-  `category_type` INT DEFAULT NULL comment '类目编号',
+  `category_name` VARCHAR(64) NOT NULL COMMENT '类目名称',
+  `parent_id` INT COMMENT '父类目ID',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
   PRIMARY KEY(`category_id`),
-  UNIQUE KEY `category_type` (`category_type`)
 )ENGINE=INNODB COMMENT '商品类目';
 
 CREATE TABLE `order_master`(
@@ -63,3 +62,13 @@ CREATE TABLE `cart`(
   `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
    PRIMARY KEY (`cart_id`)
 )ENGINE=INNODB COMMENT '购物车';
+
+CREATE TABLE `major_product` (
+  `major_id` char(32) NOT NULL,
+  `product_id` char(32) NOT NULL COMMENT '商品id',
+  `product_img` varchar(512) NOT NULL COMMENT '商品图片',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`major_id`),
+	UNIQUE KEY `product_id`(`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='热门推荐';

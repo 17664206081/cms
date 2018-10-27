@@ -48,4 +48,13 @@ public interface CartService {
     int updateProductNum(String CartId,Integer productNum) throws Exception;
 
 
+    /**
+     * 批量删除购物车商品
+     * @param cartIds
+     * @return
+     * @throws Exception
+     */
+    int batchDelete(List<String>  cartIds) throws Exception;
+
+
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
  * @author: fzy
  * @create: 2018-09-15 20:25
  **/
-@Service
 public interface OrderService {
     /**
      * 创建订单
