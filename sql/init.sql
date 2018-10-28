@@ -1,7 +1,7 @@
 CREATE TABLE  `product_info` (
     `product_id` VARCHAR(32) NOT NULL ,
 	  `product_name` VARCHAR(64) NOT NULL COMMENT '商品名称',
-    `product_price` DECIMAL(4,2) NOT NULL COMMENT '商品单价',
+    `product_price` DECIMAL(6,2) NOT NULL COMMENT '商品单价',
     `product_stock` INT NOT NULL COMMENT '库存',
     `product_description` VARCHAR(64) COMMENT '描述',
     `product_icon` VARCHAR(1024) COMMENT '图标',
@@ -23,13 +23,13 @@ CREATE TABLE `product_category`(
 
 CREATE TABLE `order_master`(
 	`order_id` VARCHAR(32) NOT NULL,
-	`buyer_name` VARCHAR(32) NOT NULL comment '买家姓名',
-  `buyer_phone` VARCHAR(32) NOT NULL comment '买家电话',
-  `buyer_adder` VARCHAR(128) NOT NULL comment '买家地址',
-	`buyer_openid` VARCHAR(64) NOT NULL comment '买家openid',
-	`order_amount` DECIMAL(8,2) NOT NULL comment '订单总金额',
-	`order_status` TINYINT(3) NOT NULL DEFAULt '0' comment '订单状态 默认0 新下单',
-	`pay_status` TINYINT(3) NOT NULL DEFAULT '0' comment '支付状态 默认0 未支付',
+	`buyer_name` VARCHAR(32) NOT NULL COMMENT '买家姓名',
+  `buyer_phone` VARCHAR(32) NOT NULL COMMENT '买家电话',
+  `buyer_adder` VARCHAR(128) NOT NULL COMMENT '买家地址',
+	`buyer_openid` VARCHAR(64) NOT NULL COMMENT '买家openid',
+	`order_amount` DECIMAL(8,2) NOT NULL COMMENT '订单总金额',
+	`order_status` TINYINT(3) NOT NULL DEFAULt '0' COMMENT '订单状态 默认0 新下单',
+	`pay_status` TINYINT(3) NOT NULL DEFAULT '0' COMMENT '支付状态 默认0 未支付',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
    PRIMARY KEY (`order_id`),
@@ -71,4 +71,18 @@ CREATE TABLE `major_product` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`major_id`),
 	UNIQUE KEY `product_id`(`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='热门推荐';
+) ENGINE=InnoDB COMMENT='热门推荐';
+
+
+CREATE TABLE `address` (
+  `address_id` char(32) NOT NULL,
+  `open_id` VARCHAR(64) NOT NULL COMMENT '买家openid',
+  `buyer_name` VARCHAR(32) NOT NULL COMMENT '买家姓名',
+  `buyer_phone` VARCHAR(32) NOT NULL COMMENT '买家电话',
+  `buyer_address` VARCHAR(128) NOT NULL comment '买家地址',
+  `postal_code` varchar(32) NOT NULL COMMENT '邮政编码',
+  `is_default` TINYINT(2) NOT NULL  COMMENT '0:默认收货地址',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB COMMENT='收货地址';

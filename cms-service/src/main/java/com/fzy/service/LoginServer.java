@@ -4,10 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.fzy.utils.HttpUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fzy.dao.AddressMapper">
+
+    <insert id="save" parameterType="com.fzy.entity.Address">
+        INSERT INTO address(
+        address_id,open_id,buyer_name,buyer_phone,buyer_address,postal_code,is_default
+        ) VALUES(#{addressId},#{openId},#{buyerName},#{buyerPhone},#{buyerAddress},
+        #{postalCode},#{isDefault})
+    </insert>
+
+    <select id="findAllByOpenId" parameterType="string" resultType="com.fzy.entity.Address">
+        SELECT * FROM address WHERE open_id=#{openId} ORDER BY is_default
+    </select>
+
+    <select id="findById" parameterType="string" resultType="com.fzy.entity.Address">
+        SELECT * FROM address WHERE address_id=#{addressId}
+    </select>
+
+    <delete id="deleteById" parameterType="string">
+        DELETE FROM address WHERE address_id=#{addressId}
+    </delete>
+
+    <select id="findByDefault" parameterType="string" resultType="com.fzy.entity.Address">
+        SELECT * FROM address WHERE is_default=0 AND open_id=#{openId}
+    </select>
+
+    <update id="updateDefault" parameterType="string">
+        UPDATE address SET is_default=0 WHERE address_id=#{addressId}
+    </update>
+
+    <update id="update" parameterType="com.fzy.entity.Address">
+        UPDATE address
+        <set>
+            <if test="buyerAddress!=null">
+                buyer_address=#{buyerAddress},
+            </if>
+            <if test="buyerName!=null">
+                buyer_name=#{buyerName},
+            </if>
+            <if test="buyerPhone!=null">
+                buyer_phone=#{buyerPhone},
+            </if>
+            <if test="postalCode!=null">
+                postal_code=#{postalCode}
+            </if>
+        </set>
+        WHERE address_id=#{addressId}
+    </update>
+
+</mapper>

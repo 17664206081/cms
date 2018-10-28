@@ -1,6 +1,7 @@
 package com.fzy.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +17,12 @@ import java.util.Date;
  **/
 @Data
 @NoArgsConstructor
+@ApiModel(value = "OrderDetail",description = "订单详情表")
 public class OrderDetail implements Serializable {
 
-    public OrderDetail(String productId,Integer productQuantity){
+    private static final long serialVersionUID = -656686983117346180L;
+
+    public OrderDetail(String productId, Integer productQuantity){
         this.productId=productId;
         this.productQuantity=productQuantity;
     }

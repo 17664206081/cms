@@ -3,6 +3,7 @@ package com.fzy.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fzy.entity.enums.OrderStatusEnum;
 import com.fzy.entity.enums.PayStatusEnum;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,13 +12,15 @@ import java.util.Date;
 
 /**
  * @program: OrderMaster
- * @description: 订单实体
+ * @description: 订单
  * @author: fzy
  * @create: 2018-09-15 17:20
  **/
 @Data
+@ApiModel(value = "OrderMaster",description = "订单")
 public class OrderMaster implements Serializable {
 
+    private static final long serialVersionUID = -4298291521116916770L;
     /**
      * 订单编号
      */

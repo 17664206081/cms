@@ -69,4 +69,9 @@
         SELECT <include refid="product"/> FROM product_info WHERE product_id=#{productId}
     </select>
 
+    <select id="findByCategory" parameterType="Integer" resultType="com.fzy.entity.ProductInfo" >
+        SELECT <include refid="product"/>  FROM product_info
+        WHERE product_status=0 AND category_type=#{category}
+    </select>
+
 </mapper>

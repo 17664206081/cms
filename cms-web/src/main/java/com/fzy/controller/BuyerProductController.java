@@ -98,4 +98,16 @@ public class BuyerProductController {
             return ResultVOUtil.error(1004,"根据商品ID查询详情失败");
         }
     }
+
+    @GetMapping("/finByCategory")
+    @ApiOperation("根据类别查询商品")
+    public ResultVo finByCategory(@RequestParam String category){
+        try {
+            List<ProductInfoVo> list = productService.findByCategory(category);
+            return ResultVOUtil.success(list);
+        } catch (Exception e) {
+            log.error("根据类别查询商品失败, {}", e.getMessage());
+            return ResultVOUtil.error(1001, "根据类别查询商品失败");
+        }
+    }
 }

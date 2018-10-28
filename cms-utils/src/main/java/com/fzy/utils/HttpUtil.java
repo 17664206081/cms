@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +20,8 @@ public class HttpUtil {
 
     /**
      * 发送GET请求
-     *
-     * @param url
-     *            目的地址
-     * @param parameters
-     *            请求参数，Map类型。
+     * @param url 目的地址
+     * @param parameters 请求参数，Map类型。
      * @return 远程响应结果
      */
     public static String sendGet(String url, Map<String, String> parameters) {
@@ -47,10 +46,10 @@ public class HttpUtil {
             String full_url = url + "?" + params;
             System.out.println(full_url);
             // 创建URL对象
-            java.net.URL connURL = new java.net.URL(full_url);
+            URL connURL = new java.net.URL(full_url);
             // 打开URL连接(建立了一个与服务器的tcp连接,并没有实际发送http请求！)
             URLConnection urlConnection=connURL.openConnection();
-            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) urlConnection;
+            HttpURLConnection httpConn = (HttpURLConnection) urlConnection;
             // 设置通用请求属性(如果已存在具有该关键字的属性，则用新值改写其值。)
             httpConn.setRequestProperty("Accept", "*/*");
             httpConn.setRequestProperty("Connection", "Keep-Alive");
@@ -86,11 +85,8 @@ public class HttpUtil {
 
     /**
      * 发送POST请求
-     *
-     * @param url
-     *            目的地址
-     * @param parameters
-     *            请求参数，Map类型。
+     * @param url 目的地址
+     * @param parameters 请求参数，Map类型。
      * @return 远程响应结果
      */
     public static String sendPost(String url, Map<String, String> parameters) {
@@ -114,9 +110,9 @@ public class HttpUtil {
                 params = temp_params.substring(0, temp_params.length() - 1);
             }
             // 创建URL对象
-            java.net.URL connURL = new java.net.URL(url);
+            URL connURL = new java.net.URL(url);
             // 打开URL连接
-            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) connURL.openConnection();
+            HttpURLConnection httpConn = (java.net.HttpURLConnection) connURL.openConnection();
             // 设置通用属性
             httpConn.setRequestProperty("Accept", "*/*");
             httpConn.setRequestProperty("Connection", "Keep-Alive");

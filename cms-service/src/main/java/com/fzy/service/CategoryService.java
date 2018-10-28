@@ -1,6 +1,8 @@
 package com.fzy.service;
 
 import com.fzy.entity.ProductCategory;
+import com.fzy.entity.vo.ProductInfoVo;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -34,4 +36,5 @@ public interface CategoryService {
      * @throws Exception
      */
     int update(ProductCategory productCategory) throws Exception;
+
 }

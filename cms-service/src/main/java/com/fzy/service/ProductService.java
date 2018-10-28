@@ -4,6 +4,7 @@ import com.fzy.entity.ProductInfo;
 import com.fzy.entity.dto.CartDto;
 import com.fzy.entity.vo.ProductDetailVo;
 import com.fzy.entity.vo.ProductInfoVo;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -76,5 +77,14 @@ public interface ProductService {
      * @throws Exception
      */
     int delete(String productId) throws Exception;
+
+
+    /**
+     * 根据商品类别查询查询商品
+     * @param category
+     * @return
+     * @throws Exception
+     */
+    List<ProductInfoVo> findByCategory(String category)throws Exception;
 
 }

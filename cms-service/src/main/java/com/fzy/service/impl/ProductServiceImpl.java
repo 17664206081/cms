@@ -12,6 +12,7 @@ import com.fzy.entity.vo.ProductInfoVo;
 import com.fzy.exception.ServiceException;
 import com.fzy.service.ProductService;
 import com.fzy.utils.UUIDUtil;
+import com.github.pagehelper.Page;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -131,12 +132,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int delete(String productId) throws Exception {
-
         ProductInfo info = productInfoMapper.findById(productId);
         if(null != info){
             return productInfoMapper.delete(info);
         }else {
             throw new ServiceException(ResultEnum.PRODUCT_NOT_EXIST);
         }
+    }
+
+    @Override
+    public List<ProductInfoVo> findByCategory(String category) throws Exception {
+        List<ProductInfo> list = productInfoMapper.findByCategory(Integer.parseInt(category));
+        List<ProductInfoVo> productInfoVoList = list.stream().map(e ->
+                new ProductInfoVo(e.getProductId(), e.getProductName()
+                        , e.getProductPrice(), e.getProductIcon().split(",")[0]))
+                .collect(Collectors.toList());
+        return productInfoVoList;
     }
 }

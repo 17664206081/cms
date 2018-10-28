@@ -2,6 +2,7 @@ package com.fzy.dao;
 
 
 import com.fzy.entity.ProductInfo;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -62,5 +63,13 @@ public interface ProductInfoMapper {
      * @return
      */
     ProductInfo findById(@Param("productId") String productId);
+
+
+    /**
+     * 根据商品类别查询商品
+     * @param category
+     * @return
+     */
+    List<ProductInfo> findByCategory(@Param("category") Integer category);
 
 }

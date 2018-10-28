@@ -32,12 +32,12 @@ public class ProductInfoMapperTest {
     public void save() {
         ProductInfo productInfo=new ProductInfo();
         productInfo.setProductId(UUIDUtil.createUUID());
-        productInfo.setProductName("魅族 16th 全面屏游戏手机 6GB+128GB 远山白 全网通移动联通电信4G手机 双卡双待");
-        productInfo.setProductPrice(new BigDecimal(2998));
+        productInfo.setProductName("12期免息vivo NEX官方正品nex手机vivonex限量版oppofindx旗艦店");
+        productInfo.setProductPrice(new BigDecimal(13));
         productInfo.setProductStock(101);
         productInfo.setCategoryType(2);
-        productInfo.setProductIcon("http://xxx.jpg");
-        productInfo.setProductDescription("好吃");
+        productInfo.setProductIcon("https://gd4.alicdn.com/imgextra/i4/100038105/TB24D0_o5CYBuNkHFCcXXcHtVXa_!!100038105.jpg_400x400.jpg_.webp,https://gd4.alicdn.com/imgextra/i4/100038105/TB2KH.8xoR1BeNjy0FmXXb0wVXa_!!100038105.jpg_400x400.jpg_.webp,https://gd4.alicdn.com/imgextra/i4/100038105/TB24D0_o5CYBuNkHFCcXXcHtVXa_!!100038105.jpg_400x400.jpg_.webp");
+        productInfo.setProductDescription("手机中的战斗机");
         int result = productInfoMapper.save(productInfo);
         Assert.assertEquals(1,result);
     }
