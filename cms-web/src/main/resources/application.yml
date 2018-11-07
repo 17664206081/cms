@@ -3,7 +3,7 @@ server:
   context-path: /cms
   ssl:
     key-alias: tomcat #别名
-    key-store: server.keystore
+    key-store: classpath:server.keystore
     key-store-type: JKS
     key-store-password: 123456
     enabled: true
