@@ -5,6 +5,7 @@ dependencies {
     apply plugin: 'application'
     mainClassName='com.fzy.CmsApplication'
     compile project(":cms-service")
+    compile('org.seleniumhq.selenium:selenium-java:2.53.0')
     //compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 }
 

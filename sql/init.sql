@@ -41,7 +41,7 @@ CREATE TABLE `order_detail`(
 	`order_id` 	VARCHAR(32) NOT NULL COMMENT '订单编号',
 	`product_id` VARCHAR(32) NOT NULL COMMENT '商品编号',
 	`product_name` VARCHAR(64) NOT NULL COMMENT '商品名称',
-	`product_price` DECIMAL(4,2) NOT NULL COMMENT '商品价格',
+	`product_price` DECIMAL(6,2) NOT NULL COMMENT '商品价格',
 	`product_quantity` INT NOT NULL COMMENT '商品数量',
 	`product_icon` VARCHAR(128) NOT NULL COMMENT '商品图片',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
@@ -86,3 +86,17 @@ CREATE TABLE `address` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB COMMENT='收货地址';
+
+CREATE TABLE `coupon` (
+  `coupon_id` char(32) NOT NULL,
+  `open_id` VARCHAR(64) NOT NULL COMMENT '买家openid',
+  `coupon_price` DECIMAL(6,2) NOT NULL COMMENT '优惠金额',
+  `remark` VARCHAR(128) NOT NULL COMMENT '备注',
+  `limit_price` DECIMAL(6,2) NOT NULL COMMENT '满减金额',
+  `now` VARCHAR(64) NOT NULL COMMENT '有效期开始',
+  `end` VARCHAR(64) NOT NULL COMMENT '有效期结束',
+  `status` TINYINT(2) NOT NULL  COMMENT '0:未领取',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`coupon_id`)
+) ENGINE=InnoDB COMMENT='优惠卷';

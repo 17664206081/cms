@@ -16,13 +16,13 @@ import java.util.List;
 
 /**
  * @program: BuyerProductController
- * @description: 买家
+ * @description: 商品信息接口
  * @author: fzy
  * @create: 2018-09-15 14:29
  **/
 @RestController
 @RequestMapping("/buyer/product")
-@Api(tags="商品")
+@Api(tags="商品信息")
 @Slf4j
 public class BuyerProductController {
 

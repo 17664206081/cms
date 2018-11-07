@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fzy.dao.CouponMapper">
+
+    <insert id="save" parameterType="com.fzy.entity.Coupon">
+        INSERT INTO coupon (
+        coupon_id,open_id,coupon_price,remark,limit_price,now,end,status
+        )VALUES(#{couponId},#{openId},#{couponPrice},#{remark},#{limitPrice}
+        ,#{now},#{end},#{status})
+    </insert>
+
+    <select id="findAll" resultType="com.fzy.entity.Coupon">
+        SELECT * FROM coupon AND status=0
+    </select>
+
+    <select id="findByOpenId" parameterType="String" resultType="com.fzy.entity.Coupon">
+        SELECT * FROM coupon WHERE open_id=#{openId} AND status=2
+    </select>
+
+</mapper>
