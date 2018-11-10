@@ -1,7 +1,9 @@
 package com.fzy.service.impl;
 
+import com.fzy.dao.CouponMapper;
 import com.fzy.entity.Coupon;
 import com.fzy.service.CouponService;
+import com.fzy.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,26 @@ import java.util.List;
 public class CouponServiceImpl implements CouponService {
 
     @Autowired
-    private CouponService couponService;
+    private CouponMapper couponMapper;
 
     @Override
-    public List<Coupon> findAll() {
-        return couponService.findAll();
+    public List<Coupon> findAllOnNoUse(String openId) {
+        return couponMapper.findAllOnNoUse(openId);
+    }
+
+    @Override
+    public List<Coupon> findAllOnNOReceive(String openId) {
+        return couponMapper.findAllOnNOReceive(openId);
+    }
+
+    @Override
+    public int save(Coupon coupon){
+        coupon.setCouponId(UUIDUtil.createUUID());
+        return couponMapper.save(coupon);
+    }
+
+    @Override
+    public int updateStatus(Coupon coupon){
+        return couponMapper.updateStatus(coupon);
     }
 }

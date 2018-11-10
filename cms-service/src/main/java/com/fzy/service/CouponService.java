@@ -12,5 +12,17 @@ import java.util.List;
  **/
 public interface CouponService {
 
-    List<Coupon> findAll();
+    List<Coupon> findAllOnNoUse(String openId) throws Exception;
+
+    List<Coupon> findAllOnNOReceive(String openId)throws Exception;
+
+    int save(Coupon coupon)throws Exception;
+
+    /**
+     * 更新优惠卷状态
+     * @param coupon
+     * @return
+     * @throws Exception
+     */
+    int updateStatus(Coupon coupon) throws Exception;
 }

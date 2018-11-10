@@ -14,7 +14,7 @@
 #说明
 运行本项目前必须安装gradle
 
-#ssl生成
+#ssl证书生成(使用jdk 自带的工具生成)
 1. 在当前项目下打开cmd
 ```
 keytool -genkey -alias tomcat -keyalg RSA -keystore ./server.keystore 
@@ -22,3 +22,8 @@ keytool -genkey -alias tomcat -keyalg RSA -keystore ./server.keystore
 ![图片暂时无法显示](https://github.com/17664206081/cms/blob/dev/img-storage/menu.saveimg.savepath20181107101411.jpg)
 
 
+#导入数据库脚本
+1. mysql -h localhost -u root -p
+2. create database cms;(创建数据库)
+3. use cms;(进入cms数据库下面)
+4. source cms.sql (导入数据文件)

@@ -14,7 +14,10 @@ public interface CouponMapper {
 
     int save(Coupon coupon);
 
-    List<Coupon> findAll();
+    List<Coupon> findAllOnNoUse(String openId);
 
-    List<Coupon> findByOpenId(String openId);
+    List<Coupon> findAllOnNOReceive(String openId);
+
+    int updateStatus(Coupon coupon);
+
 }

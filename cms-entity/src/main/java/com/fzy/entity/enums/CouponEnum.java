@@ -12,8 +12,8 @@ import lombok.Getter;
 public enum CouponEnum {
 
     NO_RECEIVE(0,"未领取"),
-    USER(1,"已使用"),
-    NO_USER(2,"未使用");
+    USE(1,"已使用"),
+    NO_USE(2,"未使用");
 
     /**
      * 状态码

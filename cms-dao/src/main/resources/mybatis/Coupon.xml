@@ -10,12 +10,16 @@
         ,#{now},#{end},#{status})
     </insert>
 
-    <select id="findAll" resultType="com.fzy.entity.Coupon">
-        SELECT * FROM coupon AND status=0
-    </select>
-
-    <select id="findByOpenId" parameterType="String" resultType="com.fzy.entity.Coupon">
+    <select id="findAllOnNoUse" resultType="com.fzy.entity.Coupon">
         SELECT * FROM coupon WHERE open_id=#{openId} AND status=2
     </select>
+
+    <select id="findAllOnNOReceive" resultType="com.fzy.entity.Coupon">
+        SELECT * FROM coupon WHERE open_id=#{openId} AND status=0
+    </select>
+
+    <update id="updateStatus" parameterType="com.fzy.entity.Coupon">
+        UPDATE coupon SET status=2 WHERE open_id=#{openId} AND coupon_id=#{couponId}
+    </update>
 
 </mapper>

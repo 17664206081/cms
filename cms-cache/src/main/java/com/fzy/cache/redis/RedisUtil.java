@@ -2,7 +2,6 @@ package com.fzy.cache.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * @program: RedisOperator
  * @description:
+ *  redisTemplate.opsForValue();//操作字符串
+ *  redisTemplate.opsForHash();//操作hash (散列)
+ *  redisTemplate.opsForList();//操作list (列表)
+ *  redisTemplate.opsForSet();//操作set
+ *  redisTemplate.opsForZSet();//操作有序set (有序集合)
  * @author: fzy
  * @date: 2018-10-17 22:46
  **/
