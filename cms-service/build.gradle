@@ -10,5 +10,9 @@ dependencies {
     compile project(":cms-utils")
     compile project(":cms-exception")
     compile project(":cms-cache")
+    //处理2003 excel
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    //处理2007 excel
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     //compile("org.springframework.boot:spring-boot-starter-amqp")
 }

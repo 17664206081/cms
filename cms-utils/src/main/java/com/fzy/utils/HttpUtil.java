@@ -31,17 +31,19 @@ public class HttpUtil {
         String params = "";// 编码之后的参数
         try {
             // 编码请求参数
-            if (parameters.size() == 1) {
-                for (String name : parameters.keySet()) {
-                    sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8"));
+            if(parameters!=null&&parameters.size()>0) {
+                if (parameters.size() == 1) {
+                    for (String name : parameters.keySet()) {
+                        sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8"));
+                    }
+                    params = sb.toString();
+                } else {
+                    for (String name : parameters.keySet()) {
+                        sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8")).append("&");
+                    }
+                    String temp_params = sb.toString();
+                    params = temp_params.substring(0, temp_params.length() - 1);
                 }
-                params = sb.toString();
-            } else {
-                for (String name : parameters.keySet()) {
-                    sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8")).append("&");
-                }
-                String temp_params = sb.toString();
-                params = temp_params.substring(0, temp_params.length() - 1);
             }
             String full_url = url + "?" + params;
             System.out.println(full_url);
@@ -96,18 +98,20 @@ public class HttpUtil {
         StringBuffer sb = new StringBuffer();// 处理请求参数
         String params = "";// 编码之后的参数
         try {
-            // 编码请求参数
-            if (parameters.size() == 1) {
-                for (String name : parameters.keySet()) {
-                    sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8"));
+            if(parameters!=null&&parameters.size()>0) {
+                // 编码请求参数
+                if (parameters.size() == 1) {
+                    for (String name : parameters.keySet()) {
+                        sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8"));
+                    }
+                    params = sb.toString();
+                } else {
+                    for (String name : parameters.keySet()) {
+                        sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8")).append("&");
+                    }
+                    String temp_params = sb.toString();
+                    params = temp_params.substring(0, temp_params.length() - 1);
                 }
-                params = sb.toString();
-            } else {
-                for (String name : parameters.keySet()) {
-                    sb.append(name).append("=").append(java.net.URLEncoder.encode(parameters.get(name), "UTF-8")).append("&");
-                }
-                String temp_params = sb.toString();
-                params = temp_params.substring(0, temp_params.length() - 1);
             }
             // 创建URL对象
             URL connURL = new java.net.URL(url);
@@ -120,6 +124,9 @@ public class HttpUtil {
             // 设置POST方式
             httpConn.setDoInput(true);
             httpConn.setDoOutput(true);
+            //设置为json 格式
+            httpConn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
             // 获取HttpURLConnection对象对应的输出流
             out = new PrintWriter(httpConn.getOutputStream());
             // 发送请求参数
