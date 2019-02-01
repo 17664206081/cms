@@ -6,7 +6,7 @@ CREATE TABLE  `product_info` (
     `product_description` VARCHAR(64) COMMENT '描述',
     `product_icon` VARCHAR(1024) COMMENT '图标',
     `category_type` INT NOT NULL COMMENT '类目编号',
-    `product_status` TINYINT(3) NOT NULL DEFAULT '0' COMMENT '商品状态 默认0 上架',
+    `product_status` ENUM ('sell','nsell') COMMENT '商品状态 售卖 未售卖',
     `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
     `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
      PRIMARY KEY(`product_id`)

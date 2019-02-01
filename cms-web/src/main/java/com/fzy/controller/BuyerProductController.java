@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -89,7 +90,7 @@ public class BuyerProductController {
     public ResultVo findById(@RequestParam("productId") String productId){
         try {
             ProductDetailVo info = productService.findById(productId);
-            if(null!=info){
+            if(!ObjectUtils.isEmpty(info)){
                 return ResultVOUtil.success(info);
             }
             return ResultVOUtil.error(1004,"根据商品ID查询详情失败");

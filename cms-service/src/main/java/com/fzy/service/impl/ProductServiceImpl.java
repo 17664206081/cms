@@ -6,6 +6,7 @@ import com.fzy.dao.ProductInfoMapper;
 import com.fzy.entity.ProductCategory;
 import com.fzy.entity.ProductInfo;
 import com.fzy.entity.dto.CartDto;
+import com.fzy.entity.enums.ProductStatusEnum;
 import com.fzy.entity.enums.ResultEnum;
 import com.fzy.entity.vo.ProductDetailVo;
 import com.fzy.entity.vo.ProductInfoVo;
@@ -44,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
         if (category!=null){
             //设置uuid
             productInfo.setProductId(UUIDUtil.createUUID());
+            productInfo.setProductStatus(ProductStatusEnum.sell);
             //2.将商品存入数据库
             return productInfoMapper.save(productInfo);
         }else {

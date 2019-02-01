@@ -67,6 +67,6 @@ public class ProductInfo implements Serializable {
      * 商品状态
      */
     @ApiModelProperty(value = "productStatus",name = "商品状态")
-    private Integer productStatus= ProductStatusEnum.UP.getCode();
+    private ProductStatusEnum productStatus;
 
 }

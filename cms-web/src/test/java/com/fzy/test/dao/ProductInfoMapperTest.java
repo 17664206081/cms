@@ -74,7 +74,7 @@ public class ProductInfoMapperTest {
 
     @Test
     public void updateSale() {
-        productInfoMapper.updateSale("7c289698ff52417e9272d356add21f64", ProductStatusEnum.UP.getCode());
+        productInfoMapper.updateSale("7c289698ff52417e9272d356add21f64", ProductStatusEnum.sell.getCode());
     }
 
     @Test

@@ -11,8 +11,8 @@ import lombok.Getter;
 @Getter
 public enum  ProductStatusEnum {
 
-    UP(0,"已上架"),
-    DOWN(1,"已下架");
+    sell(0,"已上架"),
+    nsell(1,"已下架");
 
     /**
      * 状态码
