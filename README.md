@@ -19,8 +19,7 @@
 ```
 keytool -genkey -alias tomcat -keyalg RSA -keystore ./server.keystore 
 ``` 
-![图片暂时无法显示](https://github.com/17664206081/cms/blob/dev/img-storage/menu.saveimg.savepath20181107101411.jpg)
-
+![图片暂时无法显示](https://github.com/17664206081/cms/blob/master/image/menu.saveimg.savepath20181107101411.jpg)
 
 #导入数据库脚本
 1. mysql -h localhost -u root -p
