@@ -39,5 +39,4 @@ public class OrderTypeAop {
         System.out.println("当前订单类型: "+type.value());
     }
 
-
 }
