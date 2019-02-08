@@ -55,6 +55,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+  aop:
+    proxy-target-class: true
 mybatis:
   type-aliases-package: com.fzy.entity
   mapper-locations: classpath:mybatis/*.xml
