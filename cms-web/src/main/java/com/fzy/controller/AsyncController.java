@@ -1,24 +1,23 @@
 package com.fzy.controller;
 
+import com.fzy.entity.enums.DiscountTypeEnum;
 import com.fzy.entity.vo.ResultVo;
 import com.fzy.service.AsyncService;
-import com.fzy.service.CgOrderService;
-import com.fzy.service.aop.OrderType;
+import com.fzy.service.CalPrice;
+import com.fzy.service.aop.DiscountType;
+import com.fzy.service.discount.DiscountFactory;
 import com.fzy.utils.ResultVOUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @program: AsyncController
@@ -35,9 +34,6 @@ public class AsyncController {
     @Autowired
     private AsyncService asyncService;
 
-    @Autowired
-    private CgOrderService cgOrderService;
-
     @GetMapping("/testAdd/{a}/{b}")
     @ApiOperation("异步任务测试1")
     public ResultVo testAdd(@PathVariable Integer a, @PathVariable Integer b ){
@@ -51,13 +47,13 @@ public class AsyncController {
         }
     }
 
-    @GetMapping("/test2")
+    @GetMapping("/test2/{price}")
     @ApiOperation("异步任务测试2")
-    public ResultVo test2(){
+    public ResultVo test2(@PathVariable String price){
         try {
-            cgOrderService.pay();
-            System.out.println("111111");
-            return ResultVOUtil.success(null);
+            CalPrice calPrice = DiscountFactory.getInstance().createCalPrice(DiscountTypeEnum.GOLD_VIP);
+            BigDecimal bigDecimal = calPrice.calPrice(new BigDecimal(price));
+            return ResultVOUtil.success(bigDecimal);
         } catch (Exception e) {
             log.error("异步任务调用失败,e={}, msg={}",e, e.getMessage());
             return ResultVOUtil.error(-1, "异步任务调用失败");
