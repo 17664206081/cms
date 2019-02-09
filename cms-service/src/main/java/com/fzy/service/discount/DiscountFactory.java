@@ -3,7 +3,6 @@ package com.fzy.service.discount;
 import com.fzy.entity.enums.DiscountTypeEnum;
 import com.fzy.service.CalPrice;
 import com.fzy.service.aop.DiscountType;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileFilter;
