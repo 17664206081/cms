@@ -51,7 +51,7 @@ public class AsyncController {
     @ApiOperation("异步任务测试2")
     public ResultVo test2(@PathVariable String price){
         try {
-            CalPrice calPrice = DiscountFactory.getInstance().createCalPrice(DiscountTypeEnum.GOLD_VIP);
+            CalPrice calPrice=DiscountFactory.createCalPrice(DiscountTypeEnum.VIP);
             BigDecimal bigDecimal = calPrice.calPrice(new BigDecimal(price));
             return ResultVOUtil.success(bigDecimal);
         } catch (Exception e) {
