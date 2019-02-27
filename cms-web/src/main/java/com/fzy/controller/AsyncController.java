@@ -53,6 +53,7 @@ public class AsyncController {
         try {
             CalPrice calPrice=DiscountFactory.createCalPrice(DiscountTypeEnum.VIP);
             BigDecimal bigDecimal = calPrice.calPrice(new BigDecimal(price));
+            System.out.println(bigDecimal);
             return ResultVOUtil.success(bigDecimal);
         } catch (Exception e) {
             log.error("异步任务调用失败,e={}, msg={}",e, e.getMessage());
