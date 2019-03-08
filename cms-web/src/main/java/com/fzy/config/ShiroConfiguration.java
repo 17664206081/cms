@@ -42,8 +42,8 @@ public class ShiroConfiguration {
         LinkedHashMap<String, String> map=new LinkedHashMap<>();
         //登出
         map.put("/logout","logout");
-        //对所有用户认证
-        map.put("/**","user");
+        //对所有用户认证 authc user
+        map.put("/**","anon");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");
         //首页

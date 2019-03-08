@@ -9,13 +9,20 @@
     </select>
 
     <insert id="save" parameterType="com.fzy.entity.ProductCategory">
-        INSERT INTO product_category(category_name,parent_id) VALUES(#{categoryName},#{parentId})
+        INSERT ignore INTO product_category(category_name,parent_id) VALUES(#{categoryName},#{parentId})
     </insert>
 
     <select id="findById"  parameterType="Integer" resultType="com.fzy.entity.ProductCategory">
         SELECT * FROM product_category
         <where>
             category_id=#{categoryId}
+        </where>
+    </select>
+
+    <select id="findOne" resultType="com.fzy.entity.ProductCategory">
+        SELECT * FROM product_category
+        <where>
+            id=#{categoryId}
         </where>
     </select>
 

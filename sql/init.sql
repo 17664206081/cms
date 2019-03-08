@@ -18,7 +18,7 @@ CREATE TABLE `product_category`(
   `parent_id` INT COMMENT '父类目ID',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE  current_timestamp COMMENT '修改时间',
-  PRIMARY KEY(`category_id`),
+  PRIMARY KEY(`category_id`)
 )ENGINE=INNODB COMMENT '商品类目';
 
 CREATE TABLE `order_master`(
