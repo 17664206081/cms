@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.retry.annotation.EnableRetry;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 @Slf4j
+@EnableRetry
 //@EnableScheduling
 public class CmsApplication {
 

@@ -16,6 +16,9 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
 
     compile("org.springframework.boot:spring-boot-starter-aop")
+
+    compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
+
     //消息队列
     //compile("org.springframework.boot:spring-boot-starter-amqp")
 }
